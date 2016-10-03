@@ -30,9 +30,13 @@ function checa()
 
 function preguntas(e)
 {
-  console.log("entra a funcion")
   e.preventDefault();
-  checa();
+  //checa();
+  $('form#nombre input').attr('disabled','True');
+  $('form#nombre input[type=text]').css('border','none');
+  $('form#nombre input[type=submit]').hide('slow');
+  localStorage['nombre']=$('form#nombre input[type=text]').val();
+  $('section.preguntas').show('slow');
 
 }
 
