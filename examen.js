@@ -1,8 +1,7 @@
 var total=new Array();
-var respuesta=['c','a','c','b','b','d','d','d','b','c'];
 var contador=0;
+var correctas=['c','a','c','b','b','d','d','d','b','c'];
 var buenas=0;
-localStorage['nombre']="wdwdwd";
 $(function(){
 
   $('form#nombre').on('submit',preguntas);
@@ -48,23 +47,31 @@ function califica()
   total.push(respuesta);
 $(this).parent().parent().hide('slow');
 contador+=1;
+
 if(contador>9)
   {
-    for(x in total)
-    {
-      if(total[x]==respuesta[x])
-      {
-        buenas+=10;
-      }
-    }
-    $('input.dial').attr('value',buenas);
-    $(".dial").knob({'min':0,
-      'max':100,'readOnly':true});
-      $('section.resultado').show('slow');
+    final(total);
   }
 }
 
+function final()
+{
+  for(x in total)
+  {
+    console.log(total[x]+' '+correctas[x]);
+    if(total[x]==correctas[x])
+    {
+      console.log(buenas);
+      buenas=buenas+10;
+    }
+  }
+  $('input.dial').attr('value',buenas);
+  $(".dial").knob({'min':0,
+    'max':100,'readOnly':true});
+    $('section.resultado').show('slow');
 
+
+}
 
 function scroll()
 {
